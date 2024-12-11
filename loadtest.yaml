@@ -1,0 +1,11 @@
+config:
+  target: http://localhost:5000  # Replace with your Express app URL
+  phases:
+    - duration: 5  # Test duration in seconds
+      arrivalRate: 2000  # Number of new users per second
+
+scenarios:
+  - flow:
+      - get:
+          url: /api/products 
+          

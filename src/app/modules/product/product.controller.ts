@@ -1,9 +1,7 @@
-
-import { Request, Response } from "express";
-import { ProductServices } from "./product.service";
-import ProductValidationSchema from "./product.validation";
-import ErrorResponse from "../../utils/ErrorResponse";
-
+import { Request, Response } from 'express';
+import { ProductServices } from './product.service';
+import ProductValidationSchema from './product.validation';
+import ErrorResponse from '../../utils/ErrorResponse';
 
 // product controller functions
 
@@ -16,79 +14,79 @@ const createProduct = async (req: Request, res: Response) => {
         const result = await ProductServices.createProductIntoDB(zodParsedData);
 
         res.status(200).json({
-            message: "Book created successfully",
+            message: 'Book created successfully',
             success: true,
-            data: result
+            data: result,
         });
     } catch (err) {
         res.status(500).json(ErrorResponse(err));
     }
 };
 
-
-
 const getAllProducts = async (req: Request, res: Response) => {
-    try{
+    try {
+        const { searchTerm } = req.query;
 
-        const {searchTerm} = req.query;
-        
-        const result = await ProductServices.getAllProductsFromDB(searchTerm as string);
+        const result = await ProductServices.getAllProductsFromDB(
+            searchTerm as string,
+        );
 
         res.status(200).json({
-            message: "Books retrieved successfully",
+            message: 'Books retrieved successfully',
             status: true,
-            data: result
+            data: result,
         });
-    } catch(err){
+    } catch (err) {
         res.status(500).json(ErrorResponse(err));
-
     }
-}
+};
 
 const getSingleProduct = async (req: Request, res: Response) => {
-    try{
-        const {productId} = req.params;
-        
+    try {
+        const { productId } = req.params;
+
         const result = await ProductServices.getSingleProductsFromDB(productId);
 
         res.status(200).json({
-            message: "Book retrieved successfully",
+            message: 'Book retrieved successfully',
             status: true,
-            data: result
+            data: result,
         });
-    } catch(err){
+    } catch (err) {
         res.status(500).json(ErrorResponse(err));
     }
-}
+};
 
 const deleteSingleProduct = async (req: Request, res: Response) => {
-    try{
-        const {productId} = req.params;
+    try {
+        const { productId } = req.params;
         await ProductServices.deleteSingleProductFromDB(productId);
 
         res.status(200).json({
-            message: "Book deleted successfully",
+            message: 'Book deleted successfully',
             status: true,
-            data: {}
+            data: {},
         });
-        
-    } catch(err){
+    } catch (err) {
         res.status(404).json(ErrorResponse(err));
     }
 };
 
 const updateSingleProduct = async (req: Request, res: Response) => {
-    try{
-        const {productId} = req.params;
+    try {
+        const { productId } = req.params;
         const productData = req.body;
 
-        const result = await ProductServices.updateSingleProductIntoDB(productId, productData);
+        const result = await ProductServices.updateSingleProductIntoDB(
+            productId,
+            productData,
+        );
         res.status(200).json({
-            message: "Book updated successfully",
+            message: 'Book updated successfully',
             status: true,
-            data: result
+            data: result,
         });
-    } catch(err){
+    } catch (err) {
         res.status(500).json(ErrorResponse(err));
     }
 };
@@ -98,5 +96,5 @@ export const ProductsControllers = {
     getAllProducts,
     getSingleProduct,
     updateSingleProduct,
-    deleteSingleProduct
+    deleteSingleProduct,
 };
