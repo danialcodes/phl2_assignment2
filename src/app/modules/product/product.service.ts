@@ -22,6 +22,11 @@ const getAllProductsFromDB = async (searchTerm: string | undefined) => {
 
 const getSingleProductsFromDB = async (id: string) => {
     const result = await Product.findOne({ _id: id });
+
+    if (!result) {
+        throw new Error('Book not found');
+    }
+
     return result;
 };
 
@@ -39,6 +44,11 @@ const updateSingleProductIntoDB = async (id: string, productData: IProduct) => {
     const result = await Product.findOneAndUpdate({ _id: id }, productData, {
         new: true,
     });
+
+    if (!result) {
+        throw new Error('Book not found');
+    }
+    
     return result;
 };
 
