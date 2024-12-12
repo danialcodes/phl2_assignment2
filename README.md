@@ -192,9 +192,8 @@ The Book Shop API is an Express.js application developed using TypeScript and Mo
 ## Submission
 
 1. **GitHub Repository**: [https://github.com/danialcodes/phl2\_assignment2](https://github.com/danialcodes/phl2_assignment2)
-2. **Live Deployment**: [https://phl2-assignment2.vercel.app](https://phl2-assignment2.vercel.app).
-3. **Video Explanation**: Link to a recorded video showcasing the features and testing of the API.
-4. **README File**: 
+2. **Live Deployment**: [https://phl2-assignment2.vercel.app](https://phl2-assignment2.vercel.app)
+3. **Video Explanation**: [Youtube Video](https://youtu.be/G_IYgAxjsrw)
 
 ---
 
